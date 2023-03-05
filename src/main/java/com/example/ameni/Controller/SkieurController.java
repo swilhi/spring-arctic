@@ -36,4 +36,7 @@ public class SkieurController {
     @DeleteMapping("/delete/{id}")
     public void Delete(@PathVariable("id")Long id){ iskieurService.removeSkieur(id);
     }
+    public Skieur assignSkieurToPiste( Long numSkieur, Long numPiste){
+        return iskieurService.assignSkieurToPiste(numSkieur,numPiste);
+    }
 }

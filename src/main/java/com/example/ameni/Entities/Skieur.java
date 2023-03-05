@@ -14,9 +14,9 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Skieur implements Serializable{
+public class Skieur implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
 
     private Long numSkieur;
@@ -31,6 +31,7 @@ public class Skieur implements Serializable{
     Set<Piste> pistes;
 
     @OneToMany(mappedBy = "skieur")
-    List<Inscription> inscriptions ;
-
+    List<Inscription> inscriptions;
 }
+
+

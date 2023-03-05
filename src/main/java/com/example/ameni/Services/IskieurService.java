@@ -17,5 +17,5 @@ public interface IskieurService {
     Skieur retrieveSkieur (Long id);
 
 
-
+    Skieur assignSkieurToPiste(Long numSkieur, Long numPiste);
 }
