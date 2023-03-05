@@ -1,11 +1,11 @@
 package com.example.ameni.Services;
 
+import com.example.ameni.Entities.Abonnement;
 import com.example.ameni.Entities.Piste;
 import com.example.ameni.Respositories.AbonnementRepo;
 import com.example.ameni.Respositories.PisteRepo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import com.example.ameni.Entities.Skieur;
 import com.example.ameni.Respositories.SkieurRepo;
@@ -70,6 +70,22 @@ public class SkieurServiceImpl implements IskieurService {
             skieur.getPistes().add(piste);
 
             //save
+            return skieurRepo.save(skieur);
+        }
+        return null;
+    }
+    @Override
+    public Skieur assignSkieurToAbonnement(Long numSkieur, Long numAbon) {
+        // recuperation des objets
+        Skieur skieur = skieurRepo.findById(numSkieur).orElse(null);
+        Assert.notNull(skieur, "skieur not found");
+        Abonnement abonnement = abonnementRepo.findById(numAbon).orElse(null);
+
+        Assert.notNull(abonnement, "404");
+
+        if (numSkieur != null && numAbon !=null) {
+            //traitement
+            skieur.setAbonnement(abonnement);
             return skieurRepo.save(skieur);
         }
         return null;
