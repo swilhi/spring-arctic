@@ -1,5 +1,6 @@
 package com.example.ameni.Controller;
 
+import com.example.ameni.Entities.TypeAbonnement;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.example.ameni.Entities.Skieur;
@@ -10,6 +11,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/skieur")
+
 public class SkieurController {
     private IskieurService iskieurService;
 
@@ -38,5 +40,12 @@ public class SkieurController {
     }
     public Skieur assignSkieurToPiste( Long numSkieur, Long numPiste){
         return iskieurService.assignSkieurToPiste(numSkieur,numPiste);
+    }
+    public Skieur assignSkieurToAbonnement( Long numSkieur, Long numAbon){
+        return iskieurService.assignSkieurToAbonnement(numSkieur,numAbon);
+    }
+    @GetMapping
+    public List<Skieur> retrieveSkierBySubscriptionType(TypeAbonnement typeAbonnement){
+        return iskieurService.retrieveSkiersBySubscriptionType(typeAbonnement);
     }
 }

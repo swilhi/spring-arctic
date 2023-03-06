@@ -1,6 +1,7 @@
 package com.example.ameni.Services;
 
 import com.example.ameni.Entities.Skieur;
+import com.example.ameni.Entities.TypeAbonnement;
 
 import java.util.List;
 
@@ -20,4 +21,5 @@ public interface IskieurService {
     Skieur assignSkieurToPiste(Long numSkieur, Long numPiste);
 
     Skieur assignSkieurToAbonnement(Long numSkieur, Long numAbon);
+    List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement);
 }

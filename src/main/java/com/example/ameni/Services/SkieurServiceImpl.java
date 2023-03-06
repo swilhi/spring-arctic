@@ -2,6 +2,7 @@ package com.example.ameni.Services;
 
 import com.example.ameni.Entities.Abonnement;
 import com.example.ameni.Entities.Piste;
+import com.example.ameni.Entities.TypeAbonnement;
 import com.example.ameni.Respositories.AbonnementRepo;
 import com.example.ameni.Respositories.PisteRepo;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.example.ameni.Entities.Skieur;
 import com.example.ameni.Respositories.SkieurRepo;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -81,7 +84,7 @@ public class SkieurServiceImpl implements IskieurService {
         Assert.notNull(skieur, "skieur not found");
         Abonnement abonnement = abonnementRepo.findById(numAbon).orElse(null);
 
-        Assert.notNull(abonnement, "404");
+        Assert.notNull(abonnement, "abonnement not found !");
 
         if (numSkieur != null && numAbon !=null) {
             //traitement
@@ -90,4 +93,18 @@ public class SkieurServiceImpl implements IskieurService {
         }
         return null;
     }
+
+    @Override
+    public List<Skieur> retrieveSkiersBySubscriptionType(TypeAbonnement typeAbonnement) {
+
+        List<Skieur> list = new ArrayList<>();
+        for (Skieur s:retrieveAllSkieurs()) {
+            if (s.getAbonnement().getTypeAbonnement().equals(typeAbonnement)) {
+                list.add(s);
+            }
+            return list;
+            }
+        return skieurRepo.findByAbonnementTypeAbonnement(typeAbonnement);
+    }
+
 }
